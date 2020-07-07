@@ -77,10 +77,6 @@ class DragView: NSView {
         }
     }
     
-    override func concludeDragOperation(_ sender: NSDraggingInfo?) {
-        complete()
-    }
-    
     override func draggingEnded(_ sender: NSDraggingInfo) {
         unhighligh()
     }
