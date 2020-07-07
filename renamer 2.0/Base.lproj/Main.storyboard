@@ -795,6 +795,7 @@
                     </view>
                     <connections>
                         <outlet property="doneText" destination="iPo-IO-cWU" id="Lyn-vW-Und"/>
+                        <outlet property="dragViewLabel" destination="wBU-r1-GVg" id="Aie-9Q-OB2"/>
                         <outlet property="textField" destination="7Hb-XO-2u5" id="nug-tg-iNU"/>
                     </connections>
                 </viewController>

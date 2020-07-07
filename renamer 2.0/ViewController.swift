@@ -10,6 +10,7 @@ import Cocoa
 
 class ViewController: NSViewController {
     
+    @IBOutlet weak var dragViewLabel: NSTextField!
     @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var doneText: NSTextField!
     
@@ -47,15 +48,15 @@ class ViewController: NSViewController {
                 let listFiles = try FileManager.default.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
                 var isDir: ObjCBool = false
                 for i in listFiles{
-                    if FileManager.default.fileExists(atPath: i.path, isDirectory: &isDir){
-                        if isDir.boolValue {
-                            renamer(folder: i)
-                            rename(file: i)
-                            
-                        }else{
-                            rename(file: i)
-                        }
+                    _ = FileManager.default.fileExists(atPath: i.path, isDirectory: &isDir)
+                    
+                    if isDir.boolValue {
+                        renamer(folder: i)
+                        rename(file: i)
+                    }else{
+                        rename(file: i)
                     }
+                    
                 }
             }catch {
                 print("Error")
@@ -70,6 +71,11 @@ class ViewController: NSViewController {
     }
     
     override func viewDidLoad() {
+        
+        dragViewLabel.alignment = NSTextAlignment.center
+        dragViewLabel.isBezeled = true
+        dragViewLabel.bezelStyle = .roundedBezel
+//        dragViewLabel.backgroundColor = NSColor.systemGray
         
     }
 }

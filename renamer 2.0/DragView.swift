@@ -13,20 +13,31 @@ import Cocoa
 class DragView: NSView {
     static var filePath: URL = URL(string: "empty")!
     
+    let seenBorder: CGFloat = 2
+    let noneBorder: CGFloat = 0
+    let cornerRadius: CGFloat = 5
     
     func highlight() {
         self.layer?.borderColor = NSColor.controlAccentColor.cgColor
-        self.layer?.borderWidth = 2.0
+        self.layer?.cornerRadius = cornerRadius
+        self.layer?.borderWidth = seenBorder
     }
     
     func unhighligh() {
         self.layer?.borderColor = NSColor.clear.cgColor
-        self.layer?.borderWidth = 0.0
+        self.layer?.borderWidth = noneBorder
     }
     
     func complete() {
-        self.layer?.borderColor = NSColor.green.cgColor
-        self.layer?.borderWidth = 2.0
+        self.layer?.borderColor = NSColor.systemGreen.cgColor
+        self.layer?.cornerRadius = cornerRadius
+        self.layer?.borderWidth = seenBorder
+    }
+    
+    func failToComplete() {
+        self.layer?.borderColor = NSColor.systemRed.cgColor
+        self.layer?.cornerRadius = cornerRadius
+        self.layer?.borderWidth = seenBorder
     }
     
     override func awakeFromNib() {
@@ -58,8 +69,10 @@ class DragView: NSView {
         
         if isDir.boolValue {
             sender.draggingDestinationWindow?.orderFrontRegardless()
+            complete()
             return true
         }else {
+            failToComplete()
             return false
         }
     }
