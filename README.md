@@ -6,6 +6,6 @@ All it does is deletes a static phrase from file and directory name. It works re
 
 Usage
 
-Drag and drop a folder
-Enter a phrase to repase
-Hit run button
+1. Drag and drop a folder
+2. Enter a phrase to repase
+3. Hit run button
